@@ -1,4 +1,5 @@
-// Define the state for the home page
+import 'dart:async';
+
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 class HomePageState {
@@ -6,15 +7,19 @@ class HomePageState {
   final Map<Guid, List<int>> readValues;
   final BluetoothDevice? connectedDevice;
   final List<BluetoothService> services;
+  late StreamController<List<BluetoothDevice>> _devicesListController; // Add this line
 
   HomePageState({
     required this.devicesList,
     required this.readValues,
     required this.connectedDevice,
     required this.services,
-  });
+  }) {
+    _devicesListController = StreamController<List<BluetoothDevice>>.broadcast(); // Initialize the stream controller
+  }
 
-  // Initial state for the home page
+  Stream<List<BluetoothDevice>> get devicesListStream => _devicesListController.stream; // Define the devicesListStream getter
+
   factory HomePageState.initialState() {
     return HomePageState(
       devicesList: [],
@@ -24,7 +29,6 @@ class HomePageState {
     );
   }
 
-  // Implement copyWith method
   HomePageState copyWith({
     List<BluetoothDevice>? devicesList,
     Map<Guid, List<int>>? readValues,

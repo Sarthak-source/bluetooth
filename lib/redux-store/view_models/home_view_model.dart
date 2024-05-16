@@ -41,13 +41,14 @@ class HomeViewModel with ChangeNotifier {
   Stream<List<BluetoothDevice>> get devicesListStream =>
       _devicesListController.stream;
 
+  List<BluetoothDevice> newList = [];
+
   initBluetooth() async {
     Set<String> uniqueDeviceIds = {};
 
     var subscription = FlutterBluePlus.onScanResults.listen(
       (results) {
         if (results.isNotEmpty) {
-          List<BluetoothDevice> newList = [];
           for (ScanResult result in results) {
             if (!uniqueDeviceIds
                 .contains(result.device.remoteId.str.toString())) {
@@ -55,9 +56,11 @@ class HomeViewModel with ChangeNotifier {
               addDevice(result.device);
               uniqueDeviceIds.add(result.device.remoteId.str.toString());
               newList.add(result.device);
+              log("go go${newList.length.toString()}");
+              _devicesListController.sink.add(newList);
+              log('Data added to stream: $newList ');
             }
           }
-          _devicesListController.add(newList);
         }
       },
       onError: (e) {
@@ -89,25 +92,22 @@ class HomeViewModel with ChangeNotifier {
   Future<void> connectToDevice(BluetoothDevice device) async {
     try {
       isLoading = true;
-      notifyListeners();
-
+      log('message');
       await device.connect();
+      log(device.advName);
+
       services.clear();
       services.addAll(await device.discoverServices());
 
       connectedDevice = device;
 
+      FlutterBluePlus.stopScan();
+
       isLoading = false;
-
-     
-
-      
-      notifyListeners();
     } catch (e) {
       isLoading = false;
       hasError = true;
       error = e.toString();
-      notifyListeners();
     }
   }
 

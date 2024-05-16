@@ -1,6 +1,6 @@
 import 'package:first_project/redux-store/models/app_state.dart';
 import 'package:first_project/redux-store/store.dart';
-import 'package:first_project/screens/log_in.dart';
+import 'package:first_project/views/log_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';

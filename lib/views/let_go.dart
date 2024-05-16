@@ -1,4 +1,4 @@
-import 'package:first_project/screens/home_in.dart';
+import 'package:first_project/views/home_in.dart';
 import 'package:flutter/material.dart';
 
 class LetsGoPage extends StatefulWidget {

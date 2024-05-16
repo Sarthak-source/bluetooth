@@ -98,6 +98,10 @@ class HomeViewModel with ChangeNotifier {
       connectedDevice = device;
 
       isLoading = false;
+
+     
+
+      
       notifyListeners();
     } catch (e) {
       isLoading = false;

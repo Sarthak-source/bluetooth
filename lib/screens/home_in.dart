@@ -14,8 +14,8 @@ class MyHomePage extends StatelessWidget {
         return Scaffold(
           bottomNavigationBar: BottomNavigationBar(
             showUnselectedLabels: true,
-              unselectedItemColor: Colors.purple, // Set the font color to purple
-selectedItemColor: Colors.purple,
+            unselectedItemColor: Colors.purple, // Set the font color to purple
+            selectedItemColor: Colors.purple,
             currentIndex: 0, // Set the default index to 0 (Home)
             onTap: (index) {
               // Handle navigation to different screens here
@@ -39,40 +39,47 @@ selectedItemColor: Colors.purple,
                 default:
               }
             },
-            items:  [
+            items: [
               const BottomNavigationBarItem(
-                icon: Icon(Icons.home,color: Colors.purple,),
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.purple,
+                ),
                 label: 'Home',
               ),
               const BottomNavigationBarItem(
-                icon: Icon(Icons.notifications,color: Colors.purple,),
+                icon: Icon(
+                  Icons.notifications,
+                  color: Colors.purple,
+                ),
                 label: 'Alerts',
               ),
-
               BottomNavigationBarItem(
                 icon: FloatingActionButton(
-                 
-            onPressed: () {
-              // Handle floating action button press
-            },
-            backgroundColor: const Color.fromARGB(255, 191, 33, 243),
-            child: const Icon(Icons.bluetooth),
-          ),
+                  onPressed: () {
+                    // Handle floating action button press
+                  },
+                  backgroundColor: const Color.fromARGB(255, 191, 33, 243),
+                  child: const Icon(Icons.bluetooth),
+                ),
                 label: '',
               ),
-              
               const BottomNavigationBarItem(
-                icon: Icon(Icons.money,color: Colors.purple,),
+                icon: Icon(
+                  Icons.money,
+                  color: Colors.purple,
+                ),
                 label: 'Recharge',
               ),
               const BottomNavigationBarItem(
-                icon: Icon(Icons.person,color: Colors.purple,),
+                icon: Icon(
+                  Icons.person,
+                  color: Colors.purple,
+                ),
                 label: 'User',
-                
               ),
             ],
           ),
-          
           appBar: AppBar(
             title: const Text('Home Page'),
           ),
